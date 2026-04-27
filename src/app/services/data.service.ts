@@ -13,7 +13,7 @@ export interface RecordFilter {
   providedIn: 'root'
 })
 export class DataService {
-  private apiUrl = environment.apiUrl;
+  private apiUrl = 'https://letran-accounting-backend1.onrender.com/api/';
 
   constructor(private http: HttpClient) { }
 
