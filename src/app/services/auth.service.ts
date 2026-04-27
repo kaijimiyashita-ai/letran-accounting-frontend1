@@ -7,7 +7,7 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = environment.apiUrl;
+  private apiUrl = 'https://letran-accounting-backend1.onrender.com/api/';
 
   constructor(private http: HttpClient, private router: Router) { }
 
