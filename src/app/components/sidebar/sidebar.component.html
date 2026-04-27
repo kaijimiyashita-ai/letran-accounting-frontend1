@@ -1,0 +1,8 @@
+<aside class="sidebar">
+  <div class="logo">Letran Manaoag</div>
+  <nav>
+    <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+    <a routerLink="/records" routerLinkActive="active">Records</a>
+    <a *ngIf="isAdmin" routerLink="/payments" routerLinkActive="active">Payments</a>
+  </nav>
+</aside>

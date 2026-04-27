@@ -1,0 +1,10 @@
+<div *ngIf="!isLoginPage()" class="app-container">
+  <app-sidebar></app-sidebar>
+  <app-navbar></app-navbar>
+  <main class="main-content" style="margin-top: 60px;">
+    <router-outlet></router-outlet>
+  </main>
+</div>
+<div *ngIf="isLoginPage()">
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,58 @@
+<div class="card">
+  <h2>{{ isEdit ? 'Edit' : 'Add' }} Student Record</h2>
+  <form (ngSubmit)="save()">
+    <div class="form-group">
+      <label>Student ID</label>
+      <input type="text" class="form-control" [(ngModel)]="record.student_id" name="student_id" required>
+    </div>
+    <div class="form-group">
+      <label>Full Name</label>
+      <input type="text" class="form-control" [(ngModel)]="record.full_name" name="full_name" required>
+    </div>
+
+    <!-- Department dropdown -->
+    <div class="form-group">
+      <label>Department</label>
+      <select class="form-control" [(ngModel)]="record.department" name="department" required>
+        <option value="" disabled>Select Department</option>
+        <option value="DICS">DICS</option>
+        <option value="BSBA">BSBA</option>
+        <option value="BEED">BEED</option>
+      </select>
+    </div>
+
+    <!-- Year Level dropdown -->
+    <div class="form-group">
+      <label>Year Level</label>
+      <select class="form-control" [(ngModel)]="record.year_level" name="year_level" required>
+        <option value="" disabled>Select Year Level</option>
+        <option value="1st Year">1st Year</option>
+        <option value="2nd Year">2nd Year</option>
+        <option value="3rd Year">3rd Year</option>
+        <option value="4th Year">4th Year</option>
+      </select>
+    </div>
+
+    <!-- Semester dropdown -->
+    <div class="form-group">
+      <label>Semester</label>
+      <select class="form-control" [(ngModel)]="record.semester" name="semester" required>
+        <option value="" disabled>Select Semester</option>
+        <option value="1st Semester">1st Semester</option>
+        <option value="2nd Semester">2nd Semester</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Contact Number</label>
+      <input type="text" class="form-control" [(ngModel)]="record.contact_number" name="contact_number">
+    </div>
+    <div class="form-group">
+      <label>Total Fees (PHP)</label>
+      <input type="number" class="form-control" [(ngModel)]="record.total_fees" name="total_fees" step="0.01" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="button" class="btn" routerLink="/records">Cancel</button>
+  </form>
+</div>

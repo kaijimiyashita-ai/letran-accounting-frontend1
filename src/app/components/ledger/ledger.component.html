@@ -1,0 +1,17 @@
+<div *ngIf="ledgerData" class="ledger card">
+  <h2>Ledger for {{ ledgerData.record.full_name }}</h2>
+  <p><strong>Student ID:</strong> {{ ledgerData.record.student_id }}</p>
+  <p><strong>Total Fees:</strong> {{ ledgerData.record.total_fees | currency:'PHP' }}</p>
+  <p><strong>Current Balance:</strong> {{ ledgerData.balance | currency:'PHP' }}</p>
+  <h3>Payment History</h3>
+  <table>
+    <thead><tr><th>Date</th><th>Amount</th><th>Remarks</th></tr></thead>
+    <tbody>
+      <tr *ngFor="let p of ledgerData.payments">
+        <td>{{ p.payment_date | date:'medium' }}</td>
+        <td>{{ p.amount | currency:'PHP' }}</td>
+        <td>{{ p.remarks }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

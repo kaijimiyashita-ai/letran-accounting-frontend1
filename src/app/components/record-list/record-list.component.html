@@ -1,0 +1,91 @@
+<div class="record-list">
+  <div class="header">
+    <h2>Student Records</h2>
+    <button *ngIf="isAdmin" class="btn btn-primary" routerLink="/records/new">Add Record</button>
+  </div>
+
+  <!-- Search bar -->
+  <div class="search-bar">
+    <input type="text" class="form-control"
+           placeholder="Search by name, ID, or department..."
+           [(ngModel)]="searchQuery" (input)="search()">
+  </div>
+
+  <!-- Filter panel -->
+  <div class="filter-panel card">
+    <div class="filter-grid">
+      <div class="form-group">
+        <label>Department</label>
+        <select class="form-control" [(ngModel)]="departmentFilter" (change)="applyFilter()">
+          <option value="">All Departments</option>
+          <option value="DICS">DICS</option>
+          <option value="BSBA">BSBA</option>
+          <option value="BEED">BEED</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Year Level</label>
+        <select class="form-control" [(ngModel)]="yearLevelFilter" (change)="applyFilter()">
+          <option value="">All Years</option>
+          <option value="1st Year">1st Year</option>
+          <option value="2nd Year">2nd Year</option>
+          <option value="3rd Year">3rd Year</option>
+          <option value="4th Year">4th Year</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Semester</label>
+        <select class="form-control" [(ngModel)]="semesterFilter" (change)="applyFilter()">
+          <option value="">All Semesters</option>
+          <option value="1st Semester">1st Semester</option>
+          <option value="2nd Semester">2nd Semester</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Sort By</label>
+        <select class="form-control" [(ngModel)]="sortBy" (change)="applyFilter()">
+          <option value="">Default (Latest)</option>
+          <option value="name_asc">Name A-Z</option>
+          <option value="name_desc">Name Z-A</option>
+          <option value="total_fees_desc">Total Fees High→Low</option>
+          <option value="total_fees_asc">Total Fees Low→High</option>
+          <option value="balance_desc">Balance High→Low</option>
+          <option value="balance_asc">Balance Low→High</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn btn-outline" (click)="clearFilters()">Clear All Filters</button>
+  </div>
+
+  <!-- Table -->
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Student ID</th>
+          <th>Full Name</th>
+          <th>Department</th>
+          <th>Year Level</th>
+          <th>Semester</th>
+          <th>Balance</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let record of records">
+          <td>{{ record.student_id }}</td>
+          <td>{{ record.full_name }}</td>
+          <td>{{ record.department }}</td>
+          <td>{{ record.year_level }}</td>
+          <td>{{ record.semester }}</td>
+          <td>{{ record.balance | currency:'PHP' }}</td>
+          <td class="actions">
+            <button class="btn btn-outline" [routerLink]="['/ledger', record.id]">Ledger</button>
+            <button *ngIf="isAdmin" class="btn btn-outline" [routerLink]="['/records/edit', record.id]">Edit</button>
+            <button *ngIf="isAdmin" class="btn btn-delete" (click)="deleteRecord(record.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
